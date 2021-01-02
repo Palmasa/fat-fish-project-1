@@ -4,13 +4,13 @@ class Background {
 
         // floor positions and v
         this.x = 0
-        this.y = 450
+        this.y = 460
 
         this.vx = -2
 
         // sea positions and v
         this.seaX = 0
-        this.seaY = -10
+        this.seaY = 0
 
         this.vy = 0.1
   
@@ -18,7 +18,7 @@ class Background {
         this.w = this.ctx.canvas.width
     
         this.imgBlue = new Image()
-        this.imgBlue.src = '../assets/bg-fx.png' //no ruta html
+        this.imgBlue.src = '../assets/bg-fx-6.png' //no ruta html
         this.imgBlue.isReady = false
         this.imgBlue.onload = () => {
           this.imgBlue.isReady = true
@@ -45,11 +45,19 @@ class Background {
         if (this.isReady()) {
             this.ctx.drawImage(
                 this.imgBlue,
-                this.seaX,
+                this.x,
                 this.seaY,
                 this.w,
                 this.h
             )
+            this.ctx.drawImage(
+              this.imgBlue,
+              this.x + this.w,
+              this.seaY,
+              this.w,
+              this.h
+          )
+            
 
             this.ctx.drawImage(
                 this.imgFloor,
@@ -82,9 +90,9 @@ class Background {
         this.seaY += this.vy
     
         if (this.seaY >= 0) {
-          this.vy = - 0.1
-        } else if (this.seaY <= -8) {
-          this.vy = 0.1
+          this.vy = - 0.2
+        } else if (this.seaY <= -10) {
+          this.vy = 0.2
         }
     }
       
