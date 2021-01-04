@@ -34,7 +34,6 @@ class Background {
         this.movements = {
             right: false
           }
-
     }
 
     isReady() {
@@ -77,22 +76,41 @@ class Background {
     }
 
     move() {
-
-      // Floor - dependant on the fish
-        
+      if (this.movements.right) {
         this.x += this.vx
     
         if (this.x + this.w <= 0) {
           this.x = 0
         }
+      }
+    }
 
-      // Sea - fixed movement
-        this.seaY += this.vy
+    stop() {
+      if (this.movements.right || !this.movements.right) {
+      this.vx = 0
+      }
+    }
+
+    onKeyEvent (event) {
+      const status = event.type === 'keydown'
+
+      switch (event.keyCode) {
+        case KEY_RIGHT:
+            this.movements.right = status
+            break;
+        
+        default:
+            break;
+      }
+    }
+
+    moveSea() {
+      this.seaY += this.vy
     
         if (this.seaY >= 0) {
-          this.vy = - 0.2
+          this.vy = - 0.1
         } else if (this.seaY <= -10) {
-          this.vy = 0.2
+          this.vy = 0.1
         }
     }
       

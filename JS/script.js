@@ -3,6 +3,7 @@ window.onload = () => {
 
     document.addEventListener('keypress', () => {
       game.start()
+      game.addSeaweed()
     })
 
     document.addEventListener('keydown', (event) => {
